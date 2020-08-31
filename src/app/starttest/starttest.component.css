@@ -1,0 +1,25 @@
+.card{
+    width:25%;
+    margin-top:20px;
+}
+.challenge-name {
+    margin:0;
+    font-size:16px;
+    font-weight: 600;
+    color: #46535e;
+    margin-top:5px;
+}
+.challenge-type{
+    font-size: 10px;
+    font-weight: 600;
+    color: #9ca3a8;
+}
+.spacing{
+    letter-spacing: 5px;
+}
+.button{
+    background:#9c0;
+}
+.startButton{
+    margin:15px 0px;
+}

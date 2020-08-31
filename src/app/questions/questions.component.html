@@ -1,0 +1,60 @@
+<div class="container">
+    <br>
+    <div *ngIf ="questionNumber != questions.length+1; else scoreBox">
+        <div class="question">
+            <span>{{questionNumber}}. </span>
+            <span>{{questions[questionNumber-1].question}}</span>
+        </div>
+        <br>
+        <div>
+            <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+                <div class="options">
+                    <label>
+                    <input type="radio" formControlName="answer" value="1" id="option1">
+                    {{questions[questionNumber-1].options[0]}}</label>
+                </div>
+                <br>
+                <div class="options">
+                    <label>
+                    <input type="radio" formControlName="answer" value="2" id="option2">
+                    {{questions[questionNumber-1].options[1]}}</label>
+                </div>
+                <br>
+                <div class="options">
+                    <label>
+                    <input type="radio" formControlName="answer" value="3" id="option3">
+                    {{questions[questionNumber-1].options[2]}}</label>
+                </div>
+                <br>
+                <div class="options">
+                    <label>
+                    <input type="radio" formControlName="answer" value="4" id="option4">
+                    {{questions[questionNumber-1].options[3]}}</label>
+                </div>
+                <br>
+                <div class="invalid" *ngIf ="isSubmitted && messageForm.controls.answer.errors?.required">
+                    please choose a value
+                </div>
+                <div class="buttons">
+                    
+                    <div *ngIf="questionNumber == questions.length; else elseBlock">
+                        <input type="button" class= "btn btn-success button" value="prev" (click)="prevQuestion()">
+                        <button type="submit" class="btn btn-success button">submit</button>
+                    </div>
+                    <ng-template #elseBlock >
+                        <input type="button" class="btn btn-success button" value="prev" (click)="prevQuestion()">
+                        <button type="submit" class="btn btn-success button">next</button>
+                    </ng-template>
+                </div>
+            </form>
+        </div>
+    </div>
+    <ng-template #scoreBox>
+        <div *ngIf ="score>10; else failBox">
+            <p>your score is <b>{{score}}</b> and you have cleared the test.</p>
+        </div>
+        <ng-template #failBox>
+            <p>oh! you are so close.Your score is <b>{{score}}</b> and you haven't cleared the test.</p>
+        </ng-template>
+    </ng-template>
+</div>
